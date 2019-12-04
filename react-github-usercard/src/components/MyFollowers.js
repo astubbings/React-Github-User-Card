@@ -9,6 +9,7 @@ class Followers extends React.Component {
   componentDidMount() {
     axios.get("https://api.github.com/users/astubbings/followers")
       .then(res => {
+        console.log(res.data);
         this.setState({ followers: res.data });
       })
       .catch(err => {
@@ -19,12 +20,16 @@ class Followers extends React.Component {
   render() {
     const { followers } = this.state;
 
+    if (followers === null) {
+        return <div>Loading...</div>
+      }
+
     return (
       followers.map(follower => {
         const { id } = follower;
 
         return (
-          <UserCard key = {id} user = {follower} />
+          <UserCard key = {id} frog = {follower} />
         )
       })
     )

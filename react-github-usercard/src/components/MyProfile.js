@@ -9,6 +9,7 @@ class Profile extends React.Component {
   componentDidMount() {
     axios.get("https://api.github.com/users/astubbings")
       .then(res => {
+        console.log(res.data);  
         this.setState({ user: res.data });
       })
       .catch(err => {
@@ -24,7 +25,7 @@ class Profile extends React.Component {
     }
 
     return (
-      <UserCard user = {user} />
+      <UserCard frog = {user} />
     )
   }
 }
